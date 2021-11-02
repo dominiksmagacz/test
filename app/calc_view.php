@@ -6,20 +6,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
 <head>
 	<meta charset="utf-8" />
-	<title>Kalkulator</title>
+	<title>Kalkulator Kredytowy</title>
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+        <link rel="stylesheet" href="http://localhost/php_02_ochrona_dostepu/css/style.css">
 </head>
+    
+    
+    
 <body>
-
-<div style="width:90%; margin: 2em auto;">
-	<a href="<?php print(_APP_ROOT); ?>/app/inna_chroniona.php" class="pure-button">kolejna chroniona strona</a>
+    <div class="header">
+        <h1 class="h1">Nagłówek</h1>
+        <h5>
+        <a href="<?php print(_APP_ROOT); ?>/app/inna_chroniona.php" class="pure-button">kolejna chroniona strona</a>
 	<a href="<?php print(_APP_ROOT); ?>/app/security/logout.php" class="pure-button pure-button-active">Wyloguj</a>
-</div>
+        </h5>
+    </div>
+
 
 <div style="width:90%; margin: 2em auto;">
-
-<form action="<?php print(_APP_ROOT); ?>/app/calc.php" method="post" class="pure-form pure-form-stacked">
-	<legend>Kalkulator kredytowy</legend>
+    <div class="content">
+        <form action="<?php print(_APP_ROOT); ?>/app/calc.php" method="post" class="pure-form pure-form-stacked">
+	<legend>Kalkulator kredytowy dla amatorów</legend>
 	<fieldset>
 		<label for="id_x">Kwota: </label>
 		<input id="id_x" type="text" name="x" value="<?php out($x) ?>" />
@@ -30,8 +37,8 @@
 	</fieldset>	
 	<input type="submit" value="Oblicz" class="pure-button pure-button-primary" />
 </form>	
-
-<?php
+<div class="result">
+        <?php
 //wyświeltenie listy błędów, jeśli istnieją
 if (isset($messages)) {
 	if (count ( $messages ) > 0) {
@@ -49,7 +56,17 @@ if (isset($messages)) {
 <?php echo 'Wynik: '.$result; ?>
 </div>
 <?php } ?>
+</div>
 
+</div>
+    
+    
+
+
+    <div class="footer">
+        
+        &copy; Untitled. All rights reserved. | Design: <a href="http://html5up.net">HTML5 UP</a> | Demo Images: <a href="http://unsplash.com">Unsplash</a>
+    </div>
 </div>
 
 </body>

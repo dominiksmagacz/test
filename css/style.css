@@ -1,0 +1,70 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 2021-11-02, 10:38:18
+    Author     : user
+*/
+
+body{
+	width:80%;
+	margin: 2em auto;
+
+}
+
+.header, .footer, .content { 
+	margin: 1em auto;
+	border: 0.5em solid #aaa;
+	border-radius: 1em;
+	padding: 1em;
+	background: #f5f5f5;
+    box-shadow: 0.2em 0.2em 0.4em #ccc;
+
+}
+
+.result{
+    text-align:left;
+    margin:10px 1px 1px 650px;
+}
+
+
+.header{
+    position: relative;
+		width: 100%;
+		padding: 3em 0;
+		border-radius: 15px;
+		background-image: url(images/banner.jpg);
+		background-size: cover;
+		text-align: center;
+		box-shadow: inset 0 0 0 10px #fff;
+}
+
+.header, .footer{ 
+	text-align: left;
+        display: block;
+}
+.h1{
+    text-align: center;
+}
+
+.h5{
+    margin: 1em auto;
+    margin-left: 30px;
+}
+.footer{
+  background: #111;
+  color: #888;
+  text-align: center;
+}
+.messages {	margin: 1em auto; }
+
+.err, .inf, .res {
+	padding: 1em 1em 1em 3em;
+	border-radius: 1em;
+	color: #222;
+}
+
+.err { background-color: #f88; }
+.inf { background-color: #8f8; }
+.res { background-color: #fff; }
