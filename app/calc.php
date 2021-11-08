@@ -2,6 +2,9 @@
 require_once dirname(__FILE__).'/../config.php';
 
 // KONTROLER strony kalkulatora
+//załaduj Smarty
+require_once _ROOT_PATH.'/lib/smarty/Smarty.class.php';
+
 
 // W kontrolerze niczego nie wysyła się do klienta.
 // Wysłaniem odpowiedzi zajmie się odpowiedni widok.
@@ -14,7 +17,7 @@ include _ROOT_PATH.'/app/security/check.php';
 function getParams(&$x,&$y, &$z){
 	$x = isset($_REQUEST['x']) ? $_REQUEST['x'] : null;
 	$y = isset($_REQUEST['y']) ? $_REQUEST['y'] : null;
-        $z = isset($_REQUEST['z']) ? $_REQUEST['z'] : null;
+	$z = isset($_REQUEST['z']) ? $_REQUEST['z'] : null;
 	
 }
 
@@ -70,7 +73,7 @@ function process(&$x,&$y,$z,&$messages,&$result){
             $result =  ($x * (1+($z /100)) )/( $y * 12 );
             }	
         else{
-            $messages [] = 'Tylko administrator może odejmować !';
+            $messages [] = 'Tylko administrator może dokonać kalkulacji !';
         }
 	}
 
@@ -81,6 +84,8 @@ $y = null;
 $z = null;
 $result = null;
 $messages = array();
+$infos = null;
+$form = null;
 
 //pobierz parametry i wykonaj zadanie jeśli wszystko w porządku
 getParams($x,$y,$z);
@@ -88,7 +93,21 @@ if ( validate($x,$y,$z,$messages) ) { // gdy brak błędów
 	process($x,$y,$z,$messages,$result);
 }
 
-// Wywołanie widoku z przekazaniem zmiennych
-// - zainicjowane zmienne ($messages,$x,$y,$operation,$result)
-//   będą dostępne w dołączonym skrypcie
-include 'calc_view.php';
+// 4. Przygotowanie danych dla szablonu
+
+$smarty = new Smarty();
+
+$smarty->assign('app_url',_APP_URL);
+$smarty->assign('root_path',_ROOT_PATH);
+$smarty->assign('page_title','Kalkulator dla amatorow');
+$smarty->assign('page_description',' Szablonowanie Smarty');
+$smarty->assign('page_header','Nagłówek Smarty');
+
+//pozostałe zmienne niekoniecznie muszą istnieć, dlatego sprawdzamy aby nie otrzymać ostrzeżenia
+$smarty->assign('form',$form);
+$smarty->assign('result',$result);
+$smarty->assign('messages',$messages);
+$smarty->assign('infos',$infos);
+
+// 5. Wywołanie szablonu
+$smarty->display(_ROOT_PATH.'/app/calc.html');
